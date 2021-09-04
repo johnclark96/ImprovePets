@@ -7,6 +7,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        avatarAnim()
     }
 
     val anim = Dice(6)
@@ -43,7 +45,7 @@ class Dice (private val numberAnims: Int) {
 
     //Random Dice Roll and Return Result
     fun roll(): Int {
-        return 1++;
+        return (1..numberAnims).random();
     }
 
 }
