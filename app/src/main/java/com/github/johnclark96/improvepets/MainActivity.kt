@@ -1,51 +1,180 @@
 package com.github.johnclark96.improvepets
 
+import android.graphics.Color
+import android.graphics.Color.rgb
+import android.graphics.drawable.AnimationDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.SystemClock
+import android.view.animation.Animation
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        avatarAnim()
+    var handler: Handler? = null;
+    var hour: TextView? = null;
+    var minute: TextView? = null;
+    var seconds: TextView? = null;
+    var milli_seconds: TextView? = null;
+
+    internal var MillisecondTime: Long = 0;
+    internal var StartTime: Long = 0;
+    internal var TimeBuff: Long = 0;
+    internal var UpdateTime = 0L;
+
+    internal var Seconds: Int = 0;
+    internal var Minutes: Int = 0;
+    internal var MilliSeconds: Int = 0;
+
+    //internal var flag:Boolean=false
+
+    private var startButton: Button? = null;
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        //startButton = findViewById(R.id.buttonWalk)
+        bindViews();
+
+        val slimeImage: ImageView = findViewById(R.id.imageSlime);
+        val buttonOne: Button = findViewById(R.id.buttonWalk);
+        val buttonTwo: Button = findViewById(R.id.buttonRun);
+
+        buttonOne.setOnClickListener {
+            //Not good practice to hard code color changes in the code
+            //Move to XML in future.
+            val walkButton: Button = findViewById(R.id.textStatus);
+            walkButton.text = "WALK";
+            walkButton.setBackgroundColor(Color.BLUE);
+            walkButton.setTextColor(Color.WHITE);
+
+        }
+        //Not good practice to hard code color changes in the code
+        //Move to XML in future.
+        buttonTwo.setOnClickListener {
+            val runButton: Button = findViewById(R.id.textStatus);
+            runButton.text = "RUN";
+            runButton.setBackgroundColor(rgb(125, 9, 9));
+            runButton.setTextColor(Color.WHITE);
+        }
+
+
+        //avatarAnim()
     }
 
-    val anim = Dice(6)
-    val animRoll = anim.roll()
+    override fun onStart() {
+        super.onStart()
+//
+//        val slimeImage = findViewById<ImageView>(R.id.imageSlime).apply {
+//            setBackgroundResource(R.drawable.slimeanim)
+//            slimeAnimation = background as AnimationDrawable
+//        }
+
+
+//        val slimeImage: ImageView = findViewById(R.id.imageViewPet);
+//        val animatedSlime: AnimationDrawable = slimeImage as AnimationDrawable
+//        animatedSlime.start()
+
+//        imageViewPet.setImageDrawable(getResources().getDrawable(R.drawable.slimeanim));
+//        AnimationDrawable slimeanim = (AnimationDrawable) imageViewPet.getDrawable();
+//        slimeanim.start()
+    }
 
     private fun avatarAnim() {
-        val drawableResource = when (animRoll) {
+        for (i in 1..4) {
 
-            1 -> R.drawable.improve_pets_slime_1
-            2 -> R.drawable.improve_pets_slime_1
-            3 -> R.drawable.improve_pets_slime_1
-            4 -> R.drawable.improve_pets_slime_2
-            5 -> R.drawable.improve_pets_slime_2
-            6 -> R.drawable.improve_pets_slime_4
+        }
+    }
 
-            else -> R.drawable.improve_pets_slime_1
+    private fun bindViews() {
+        hour = findViewById(R.id.hour);
+        minute = findViewById(R.id.minute);
+        seconds = findViewById(R.id.seconds);
+        //milli_seconds = findViewById(R.id.milli_seconds);
 
+        startButton?.setOnClickListener {
+            StartTime = SystemClock.uptimeMillis();
+            handler?.postDelayed(runnable, 0);
+        }
+    }
+
+    private var runnable: Runnable = object : Runnable {
+        override fun run() {
+            MillisecondTime = SystemClock.uptimeMillis() - StartTime;
+
+            UpdateTime = TimeBuff + MilliSeconds;
+
+            Seconds = (UpdateTime / 1000).toInt();
+
+            Minutes = Seconds / 60;
+
+            Seconds %= 60;
+
+            MilliSeconds = (UpdateTime % 1000).toInt();
+
+            if (Minutes.toString().length < 2) {
+                minute?.text = "0" + Minutes.toString();
+            } else {
+                minute?.text = Minutes.toString();
+            }
+            if (Seconds.toString().length < 2) {
+                seconds?.text = "0" + Seconds.toString();
+            } else {
+                seconds?.text = Seconds.toString();
+            }
+
+            milli_seconds?.text = MilliSeconds.toString();
+
+            handler?.postDelayed(this, 0);
         }
     }
 }
 
-class Avatar () {
 
-}
 
-class Walk (private val walkStatus: Boolean) {
+//    val anim = Dice(6)
+//    val animRoll = anim.roll()
 
-    fun walkCounter(): Int {
-        return 0;
-    }
-}
+//    private fun avatarAnim() {
+//        val drawableResource = when (animRoll) {
+//
+//            1 -> R.drawable.improve_pets_slime_1
+//            2 -> R.drawable.improve_pets_slime_1
+//            3 -> R.drawable.improve_pets_slime_1
+//            4 -> R.drawable.improve_pets_slime_2
+//            5 -> R.drawable.improve_pets_slime_2
+//            6 -> R.drawable.improve_pets_slime_4
+//
+//            else -> R.drawable.improve_pets_slime_1
+//
+//        }
+//    }
+//}
 
-class Dice (private val numberAnims: Int) {
+//class Avatar () {
+//
+//}
 
-    //Random Dice Roll and Return Result
-    fun roll(): Int {
-        return (1..numberAnims).random();
-    }
+//class Walk (private val walkStatus: Boolean) {
+//
+//    fun walkCounter(): Int {
+//        return 0;
+//    }
+//}
+//
+//class Run () {
+//
+//}
 
-}
+//class Dice (private val numberAnims: Int) {
+//
+//    //Random Dice Roll and Return Result
+//    fun roll(): Int {
+//        return (1..numberAnims).random();
+//    }
+//
+//}
