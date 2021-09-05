@@ -2,18 +2,19 @@ package com.github.johnclark96.improvepets
 
 import android.graphics.Color
 import android.graphics.Color.rgb
-import android.graphics.drawable.AnimationDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.SystemClock
-import android.view.animation.Animation
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
+    // Start of Code
+    // Credits to https://github.com/ajithvgiri/stopwatch
+    // Utilized some code to implement the stopwatch function
     var handler: Handler? = null;
     var hour: TextView? = null;
     var minute: TextView? = null;
@@ -29,15 +30,16 @@ class MainActivity : AppCompatActivity() {
     internal var Minutes: Int = 0;
     internal var MilliSeconds: Int = 0;
 
+    //Flag intended for a button from the original source code.
     //internal var flag:Boolean=false
 
     private var startButton: Button? = null;
-
+    // End of Code
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //startButton = findViewById(R.id.buttonWalk)
+        //startButton = findViewById(R.id.buttonWalk) // Disabled (could not get it to work)
         bindViews();
 
         val slimeImage: ImageView = findViewById(R.id.imageSlime);
@@ -48,6 +50,7 @@ class MainActivity : AppCompatActivity() {
             //Not good practice to hard code color changes in the code
             //Move to XML in future.
             val walkButton: Button = findViewById(R.id.textStatus);
+            slimeImage.setImageResource(R.drawable.improvepetsslime2)
             walkButton.text = "WALK";
             walkButton.setBackgroundColor(Color.BLUE);
             walkButton.setTextColor(Color.WHITE);
@@ -57,6 +60,7 @@ class MainActivity : AppCompatActivity() {
         //Move to XML in future.
         buttonTwo.setOnClickListener {
             val runButton: Button = findViewById(R.id.textStatus);
+            slimeImage.setImageResource(R.drawable.improvepetsslime3)
             runButton.text = "RUN";
             runButton.setBackgroundColor(rgb(125, 9, 9));
             runButton.setTextColor(Color.WHITE);
@@ -66,30 +70,16 @@ class MainActivity : AppCompatActivity() {
         //avatarAnim()
     }
 
-    override fun onStart() {
-        super.onStart()
-//
-//        val slimeImage = findViewById<ImageView>(R.id.imageSlime).apply {
-//            setBackgroundResource(R.drawable.slimeanim)
-//            slimeAnimation = background as AnimationDrawable
-//        }
-
-
-//        val slimeImage: ImageView = findViewById(R.id.imageViewPet);
-//        val animatedSlime: AnimationDrawable = slimeImage as AnimationDrawable
-//        animatedSlime.start()
-
-//        imageViewPet.setImageDrawable(getResources().getDrawable(R.drawable.slimeanim));
-//        AnimationDrawable slimeanim = (AnimationDrawable) imageViewPet.getDrawable();
-//        slimeanim.start()
-    }
-
+    //Attempt to animate slime
     private fun avatarAnim() {
         for (i in 1..4) {
 
         }
     }
 
+    /* Start of Code
+       Credits to https://github.com/ajithvgiri/stopwatch
+       Utilized some code to implement the stopwatch function */
     private fun bindViews() {
         hour = findViewById(R.id.hour);
         minute = findViewById(R.id.minute);
@@ -134,7 +124,10 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
+//End of Code
 
+
+/*  Attempts to implement Dice game to animate our slime avatar */
 
 //    val anim = Dice(6)
 //    val animRoll = anim.roll()
@@ -153,21 +146,6 @@ class MainActivity : AppCompatActivity() {
 //
 //        }
 //    }
-//}
-
-//class Avatar () {
-//
-//}
-
-//class Walk (private val walkStatus: Boolean) {
-//
-//    fun walkCounter(): Int {
-//        return 0;
-//    }
-//}
-//
-//class Run () {
-//
 //}
 
 //class Dice (private val numberAnims: Int) {
