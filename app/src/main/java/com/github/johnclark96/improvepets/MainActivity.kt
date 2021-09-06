@@ -36,6 +36,9 @@ class MainActivity : AppCompatActivity() {
     private var startButton: Button? = null;
     // End of Code
 
+    private var levelCount = 1
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -43,10 +46,14 @@ class MainActivity : AppCompatActivity() {
         bindViews();
 
         val slimeImage: ImageView = findViewById(R.id.imageSlime);
+        val slimeLevel: TextView = findViewById(R.id.textLevel)
         val buttonOne: Button = findViewById(R.id.buttonWalk);
         val buttonTwo: Button = findViewById(R.id.buttonRun);
 
         buttonOne.setOnClickListener {
+            levelCount++
+            var nextLevel = levelCount.toString()
+            slimeLevel.text = nextLevel
             //Not good practice to hard code color changes in the code
             //Move to XML in future.
             val walkButton: Button = findViewById(R.id.textStatus);
@@ -55,10 +62,14 @@ class MainActivity : AppCompatActivity() {
             walkButton.setBackgroundColor(Color.BLUE);
             walkButton.setTextColor(Color.WHITE);
 
+
         }
         //Not good practice to hard code color changes in the code
         //Move to XML in future.
         buttonTwo.setOnClickListener {
+            levelCount++
+            var nextLevel = levelCount.toString()
+            slimeLevel.text = nextLevel
             val runButton: Button = findViewById(R.id.textStatus);
             slimeImage.setImageResource(R.drawable.improvepetsslime3)
             runButton.text = "RUN";

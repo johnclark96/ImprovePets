@@ -7,10 +7,25 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/levelText"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:text="@string/levelText"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.024" />
+
+    <TextView
         android:id="@+id/textViewName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SLIME"
+        android:text="@string/slimeName"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -40,7 +55,7 @@
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_marginTop="4dp"
-        android:text="IDLE"
+        android:text="@string/statusIdle"
         android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,7 +67,7 @@
         android:id="@+id/textView"
         android:layout_width="100dp"
         android:layout_height="30dp"
-        android:text="STATUS:"
+        android:text="@string/statusHeader"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -68,7 +83,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="168dp"
-        android:text="RUN"
+        android:text="@string/statusRunning"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.361"
@@ -81,7 +96,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="168dp"
-        android:text="WALK"
+        android:text="@string/statusWalking"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.256"
@@ -89,16 +104,20 @@
         app:layout_constraintTop_toBottomOf="@+id/imageSlime"
         app:layout_constraintVertical_bias="0.343" />
 
+
+    <!--START OF CODE CREDITS -->
+    <!-- Credits to  https://github.com/ajithvgiri/stopwatch
+    Used the styling for the stopwatch layout as reference
+    -->
     <TextView
         android:id="@+id/minute"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="164dp"
         android:text="@string/_50"
         android:textColor="@android:color/holo_blue_light"
         android:textSize="72sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -108,8 +127,6 @@
         android:id="@+id/hour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         android:text="@string/_01"
         android:textColor="@android:color/holo_blue_light"
         android:textSize="72sp"
@@ -124,9 +141,7 @@
         android:id="@+id/colon2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/colon"
         android:textColor="@android:color/holo_blue_dark"
@@ -140,8 +155,6 @@
         android:id="@+id/seconds"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         android:text="@string/_50"
         android:textColor="@android:color/holo_blue_light"
         android:textSize="72sp"
@@ -149,7 +162,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/colon2"
+        app:layout_constraintStart_toEndOf="@+id/minute"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.771" />
 
@@ -157,25 +170,23 @@
         android:id="@+id/colon1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/colon"
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="@+id/minute"
         app:layout_constraintEnd_toStartOf="@+id/minute"
-        app:layout_constraintHorizontal_bias="0.714"
         app:layout_constraintStart_toEndOf="@+id/hour"
         app:layout_constraintTop_toTopOf="@+id/hour" />
+    <!--END OF CODE CREDITS -->
 
     <Button
         android:id="@+id/startButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="52dp"
-        android:text="START"
+        android:text="@string/timerStart"
         android:backgroundTint="@color/green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/resetButton"
@@ -187,7 +198,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="52dp"
-        android:text="RESET"
+        android:text="@string/timerReset"
         android:backgroundTint="@color/purple_200"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -199,12 +210,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="52dp"
-        android:text="STOP"
+        android:text="@string/timerStop"
         android:backgroundTint="@color/red"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toEndOf="@+id/resetButton" />
+
+    <TextView
+        android:id="@+id/textLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/level"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageSlime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.302"
+        app:layout_constraintStart_toEndOf="@+id/textStatus"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.486" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
