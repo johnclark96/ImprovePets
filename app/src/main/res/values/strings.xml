@@ -11,4 +11,14 @@
     <string name="m">M</string>
     <string name="s">S</string>
     <string name="zero">0</string>
+    <string name="slimeName">SLIME</string>
+    <string name="statusIdle">IDLE</string>
+    <string name="statusWalking">WALK</string>
+    <string name="statusRunning">RUN</string>
+    <string name="statusHeader">STATUS</string>
+    <string name="timerStart">START</string>
+    <string name="timerStop">STOP</string>
+    <string name="timerReset">RESET</string>
+    <string name="level">1</string>
+    <string name="levelText">LEVEL</string>
 </resources>
