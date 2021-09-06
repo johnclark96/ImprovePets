@@ -1,5 +1,6 @@
 package com.github.johnclark96.improvepets
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.graphics.Color.rgb
 import androidx.appcompat.app.AppCompatActivity
@@ -15,52 +16,56 @@ class MainActivity : AppCompatActivity() {
     // Start of Code
     // Credits to https://github.com/ajithvgiri/stopwatch
     // Utilized some code to implement the stopwatch function
-    var handler: Handler? = null;
-    var hour: TextView? = null;
-    var minute: TextView? = null;
-    var seconds: TextView? = null;
-    var milli_seconds: TextView? = null;
+    var handler: Handler? = null
+    private var hour: TextView? = null
+    var minute: TextView? = null
+    var seconds: TextView? = null
+    var milli_seconds: TextView? = null
 
-    internal var MillisecondTime: Long = 0;
-    internal var StartTime: Long = 0;
-    internal var TimeBuff: Long = 0;
-    internal var UpdateTime = 0L;
+    internal var MillisecondTime: Long = 0
+    internal var StartTime: Long = 0
+    internal var TimeBuff: Long = 0
+    internal var UpdateTime = 0L
 
-    internal var Seconds: Int = 0;
-    internal var Minutes: Int = 0;
-    internal var MilliSeconds: Int = 0;
+    internal var Seconds: Int = 0
+    internal var Minutes: Int = 0
+    internal var MilliSeconds: Int = 0
 
     //Flag intended for a button from the original source code.
     //internal var flag:Boolean=false
 
-    private var startButton: Button? = null;
+    private var startButton: Button? = null
     // End of Code
 
     private var levelCount = 1
 
 
+    @SuppressLint("CutPasteId")
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
         //startButton = findViewById(R.id.buttonWalk) // Disabled (could not get it to work)
-        bindViews();
+        bindViews()
 
-        val slimeImage: ImageView = findViewById(R.id.imageSlime);
+        val slimeImage: ImageView = findViewById(R.id.imageSlime)
         val slimeLevel: TextView = findViewById(R.id.textLevel)
-        val buttonOne: Button = findViewById(R.id.buttonWalk);
-        val buttonTwo: Button = findViewById(R.id.buttonRun);
+        val buttonOne: Button = findViewById(R.id.buttonWalk)
+        val buttonTwo: Button = findViewById(R.id.buttonRun)
+        val walkButton: Button = findViewById(R.id.textStatus)
+        val runButton: Button = findViewById(R.id.textStatus)
+
+
 
         buttonOne.setOnClickListener {
             levelCount++
-            var nextLevel = levelCount.toString()
+            val nextLevel = levelCount.toString()
             slimeLevel.text = nextLevel
             //Not good practice to hard code color changes in the code
             //Move to XML in future.
-            val walkButton: Button = findViewById(R.id.textStatus);
             slimeImage.setImageResource(R.drawable.improvepetsslime2)
-            walkButton.text = "WALK";
-            walkButton.setBackgroundColor(Color.BLUE);
-            walkButton.setTextColor(Color.WHITE);
+            walkButton.text = "WALK"
+            walkButton.setBackgroundColor(Color.BLUE)
+            walkButton.setTextColor(Color.WHITE)
 
 
         }
@@ -68,13 +73,12 @@ class MainActivity : AppCompatActivity() {
         //Move to XML in future.
         buttonTwo.setOnClickListener {
             levelCount++
-            var nextLevel = levelCount.toString()
+            val nextLevel = levelCount.toString()
             slimeLevel.text = nextLevel
-            val runButton: Button = findViewById(R.id.textStatus);
             slimeImage.setImageResource(R.drawable.improvepetsslime3)
-            runButton.text = "RUN";
-            runButton.setBackgroundColor(rgb(125, 9, 9));
-            runButton.setTextColor(Color.WHITE);
+            runButton.text = "RUN"
+            runButton.setBackgroundColor(rgb(125, 9, 9))
+            runButton.setTextColor(Color.WHITE)
         }
 
 
@@ -82,55 +86,56 @@ class MainActivity : AppCompatActivity() {
     }
 
     //Attempt to animate slime
-    private fun avatarAnim() {
-        for (i in 1..4) {
-
-        }
-    }
+//    private fun avatarAnim() {
+//        for (i in 1..4) {
+//
+//        }
+//    }
 
     /* Start of Code
        Credits to https://github.com/ajithvgiri/stopwatch
        Utilized some code to implement the stopwatch function */
     private fun bindViews() {
-        hour = findViewById(R.id.hour);
-        minute = findViewById(R.id.minute);
-        seconds = findViewById(R.id.seconds);
-        //milli_seconds = findViewById(R.id.milli_seconds);
+        hour = findViewById(R.id.hour)
+        minute = findViewById(R.id.minute)
+        seconds = findViewById(R.id.seconds)
+        //milli_seconds = findViewById(R.id.milli_seconds)
 
         startButton?.setOnClickListener {
-            StartTime = SystemClock.uptimeMillis();
-            handler?.postDelayed(runnable, 0);
+            StartTime = SystemClock.uptimeMillis()
+            handler?.postDelayed(runnable, 0)
         }
     }
 
     private var runnable: Runnable = object : Runnable {
+        @SuppressLint("SetTextI18n")
         override fun run() {
-            MillisecondTime = SystemClock.uptimeMillis() - StartTime;
+            MillisecondTime = SystemClock.uptimeMillis() - StartTime
 
-            UpdateTime = TimeBuff + MilliSeconds;
+            UpdateTime = TimeBuff + MilliSeconds
 
-            Seconds = (UpdateTime / 1000).toInt();
+            Seconds = (UpdateTime / 1000).toInt()
 
-            Minutes = Seconds / 60;
+            Minutes = Seconds / 60
 
-            Seconds %= 60;
+            Seconds %= 60
 
-            MilliSeconds = (UpdateTime % 1000).toInt();
+            MilliSeconds = (UpdateTime % 1000).toInt()
 
             if (Minutes.toString().length < 2) {
-                minute?.text = "0" + Minutes.toString();
+                minute?.text = "0$Minutes"
             } else {
-                minute?.text = Minutes.toString();
+                minute?.text = Minutes.toString()
             }
             if (Seconds.toString().length < 2) {
-                seconds?.text = "0" + Seconds.toString();
+                seconds?.text = "0$Seconds"
             } else {
-                seconds?.text = Seconds.toString();
+                seconds?.text = Seconds.toString()
             }
 
-            milli_seconds?.text = MilliSeconds.toString();
+            milli_seconds?.text = MilliSeconds.toString()
 
-            handler?.postDelayed(this, 0);
+            handler?.postDelayed(this, 0)
         }
     }
 }
